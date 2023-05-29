@@ -47,7 +47,7 @@ async function watchHosts() {
     const host = process.env.INSTANCE_IP || require("os").hostname();
     await db.addHost({ id: ID, host, tcpPort });
     setInterval(async () => {
-        console.log({ nodes: broker.registry.nodes.toArray() });
+        console.log({ nodes: await broker.call('$node.list', { onlyAvailable: true }) });
         const hosts = await db.getHosts();
         for (const host of hosts) {
             if (__hosts.has(host.id)) {

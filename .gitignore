@@ -1,2 +1,5 @@
 instances.db
 node_modules/
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.backup

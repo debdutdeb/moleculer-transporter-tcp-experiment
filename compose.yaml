@@ -2,42 +2,16 @@ name: moleculer
 
 services:
   node1:
-    build:
-      dockerfile: ./Dockerfile
-      no_cache: true
+    image: debdutdeb/moleculer-experiment:1
 
     environment:
-      PORT: 8080
-      TCP_PORT: 8081
-      MOLECULER_DEBUG: 1
-      CLEAN_TRY: 1
+      PORT: ${PORT}
+      TCP_PORT: ${TCP_PORT}
+      INSTANCE_IP: ${INSTANCE_IP}
 
     ports:
-      - 8080:8080
+      - ${PORT}:${PORT}
+      - ${TCP_PORT}:${TCP_PORT}
 
     volumes:
       - ./instances.db:/app/instances.db
-
-  node2:
-    build:
-      dockerfile: ./Dockerfile
-      no_cache: true
-
-    depends_on:
-      - node1
-    environment:
-      PORT: 8082
-      TCP_PORT: 8083
-
-    ports:
-      - 8082:8082
-
-    volumes:
-      - ./instances.db:/app/instances.db
-
-    networks:
-      - __dummy
-
-
-networks:
-  __dummy:

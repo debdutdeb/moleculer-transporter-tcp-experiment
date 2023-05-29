@@ -1,4 +1,4 @@
-from node
+from --platform=amd64 node
 
 copy index.js /app/
 copy database.js /app/
