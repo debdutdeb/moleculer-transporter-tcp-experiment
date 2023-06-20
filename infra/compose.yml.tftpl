@@ -1,0 +1,15 @@
+services:
+  rocketchat:
+    image: ghcr.io/rocketchat/rocket.chat:pr-29551
+    restart: always
+    environment:
+      MONGO_URL: ${mongo_url}
+      MONGO_OPLOG_URL: ${mongo_oplog_url}
+      ROOT_URL: http://${public_ip}:3000
+      PORT: 3000
+      TCP_PORT: 8080
+      INSTANCE_IP: ${instance_ip}
+      TRANSPORTER_EXTRA: '{"useHostname": false}'
+    ports:
+      - 3000:3000
+      - 8080:8080
